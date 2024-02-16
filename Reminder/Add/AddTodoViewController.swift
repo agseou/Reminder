@@ -7,11 +7,14 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
-class AddTodoViewController: BaseViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class AddTodoViewController: BaseViewController {
     
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
-    var date: String?
+    let titleTextfield = UITextField()
+    var date: String? = nil
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +33,6 @@ class AddTodoViewController: BaseViewController, UIImagePickerControllerDelegate
         let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(tapCancelButton))
         self.navigationItem.leftBarButtonItem = cancelButton
         
-        // Create the "Add" button on the right
         let addButton = UIBarButtonItem(title: "추가", style: .done, target: self, action: #selector(tapAddButtonTapped))
         self.navigationItem.rightBarButtonItem = addButton
         
@@ -50,12 +52,27 @@ class AddTodoViewController: BaseViewController, UIImagePickerControllerDelegate
     }
     
     @objc func tapAddButtonTapped() {
-        print("Add action triggered")
+        guard let title = titleTextfield.text else { return }
+        
+        let realm = try! Realm() // 램 호출!
+        
+        // 위치 호출
+        print(realm.configuration.fileURL!)
+        
+       
+        let money = Int.random(in: 100...5000) * 10
+        let data = ReminderModel(title: title, compelete: false, flag: false)
+
+        try! realm.write {
+            realm.add(data)
+            print("Realm create")
+        }
+        
     }
     
     @objc func receiveDate(_ notification: NSNotification) {
-        if let date = notification.userInfo?["selectedDate"] as? String {
-            self.date = date
+        if let date = notification.userInfo?["selectedDate"] as? Date {
+            self.date = date.formattedDate
         }
     }
 }
@@ -80,23 +97,16 @@ extension AddTodoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        for subview in cell.contentView.subviews {
-            subview.removeFromSuperview()
-        }
-        
         switch indexPath.section {
         case 0:
-            let textField = UITextField()
-            textField.placeholder = "입력하세여"
-            cell.contentView.addSubview(textField)
-            textField.delegate = self // Set the delegate
+            cell.contentView.addSubview(titleTextfield)
+            titleTextfield.delegate = self
             
-            textField.snp.makeConstraints { make in
-                make.edges.equalToSuperview().inset(15)
+            titleTextfield.snp.makeConstraints {
+                $0.edges.equalToSuperview().inset(10)
             }
         case 1:
             cell.textLabel?.text = "마감일"
-            cell.detailTextLabel?.text = date
             cell.accessoryType = .disclosureIndicator
         case 2:
             cell.textLabel?.text = "태그"
@@ -118,10 +128,7 @@ extension AddTodoViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
-            if let textFieldCell = tableView.cellForRow(at: indexPath),
-               let textField = textFieldCell.contentView.subviews.first(where: { $0 is UITextField }) as? UITextField {
-                textField.becomeFirstResponder()
-            }
+            break
             
         case 1:
             let dateVC = DateViewController()

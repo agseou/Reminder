@@ -22,6 +22,11 @@
 		A047D3712B7D5C1D00F897E4 /* PriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A047D3702B7D5C1D00F897E4 /* PriorityViewController.swift */; };
 		A047D3742B7D8A0A00F897E4 /* MainItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A047D3732B7D8A0900F897E4 /* MainItemCollectionViewCell.swift */; };
 		A047D3762B7D8A1800F897E4 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A047D3752B7D8A1800F897E4 /* BaseCollectionViewCell.swift */; };
+		A047D3792B7DA6FA00F897E4 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A047D3782B7DA6FA00F897E4 /* Date+Extension.swift */; };
+		A047D3842B7DFA0300F897E4 /* CircleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A047D3832B7DFA0300F897E4 /* CircleIcon.swift */; };
+		A047D3892B7DFFAB00F897E4 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A047D3882B7DFFAB00F897E4 /* Realm */; };
+		A047D38B2B7DFFAB00F897E4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A047D38A2B7DFFAB00F897E4 /* RealmSwift */; };
+		A047D38E2B7E002200F897E4 /* ReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A047D38D2B7E002200F897E4 /* ReminderModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +46,9 @@
 		A047D3702B7D5C1D00F897E4 /* PriorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityViewController.swift; sourceTree = "<group>"; };
 		A047D3732B7D8A0900F897E4 /* MainItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		A047D3752B7D8A1800F897E4 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		A047D3782B7DA6FA00F897E4 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		A047D3832B7DFA0300F897E4 /* CircleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleIcon.swift; sourceTree = "<group>"; };
+		A047D38D2B7E002200F897E4 /* ReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A047D38B2B7DFFAB00F897E4 /* RealmSwift in Frameworks */,
+				A047D3892B7DFFAB00F897E4 /* Realm in Frameworks */,
 				A047D3662B7D4ED200F897E4 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +84,9 @@
 		A047D3492B7CB75A00F897E4 /* Reminder */ = {
 			isa = PBXGroup;
 			children = (
+				A047D38C2B7DFFDB00F897E4 /* Model */,
+				A047D3822B7DF9DB00F897E4 /* Component */,
+				A047D3772B7DA6EE00F897E4 /* Extension */,
 				A047D3722B7D5C3700F897E4 /* Add */,
 				A047D3612B7CB9C700F897E4 /* Main */,
 				A047D35E2B7CB94600F897E4 /* Base */,
@@ -117,6 +130,30 @@
 			path = Add;
 			sourceTree = "<group>";
 		};
+		A047D3772B7DA6EE00F897E4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A047D3782B7DA6FA00F897E4 /* Date+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		A047D3822B7DF9DB00F897E4 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				A047D3832B7DFA0300F897E4 /* CircleIcon.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		A047D38C2B7DFFDB00F897E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A047D38D2B7E002200F897E4 /* ReminderModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +172,8 @@
 			name = Reminder;
 			packageProductDependencies = (
 				A047D3652B7D4ED200F897E4 /* SnapKit */,
+				A047D3882B7DFFAB00F897E4 /* Realm */,
+				A047D38A2B7DFFAB00F897E4 /* RealmSwift */,
 			);
 			productName = Reminder;
 			productReference = A047D3472B7CB75A00F897E4 /* Reminder.app */;
@@ -166,6 +205,7 @@
 			mainGroup = A047D33E2B7CB75900F897E4;
 			packageReferences = (
 				A047D3642B7D4ED200F897E4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A047D3872B7DFFAB00F897E4 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = A047D3482B7CB75A00F897E4 /* Products */;
 			projectDirPath = "";
@@ -199,12 +239,15 @@
 				A047D3602B7CB95300F897E4 /* BaseViewController.swift in Sources */,
 				A047D36D2B7D5C0700F897E4 /* DateViewController.swift in Sources */,
 				A047D3762B7D8A1800F897E4 /* BaseCollectionViewCell.swift in Sources */,
+				A047D38E2B7E002200F897E4 /* ReminderModel.swift in Sources */,
+				A047D3792B7DA6FA00F897E4 /* Date+Extension.swift in Sources */,
 				A047D34B2B7CB75A00F897E4 /* AppDelegate.swift in Sources */,
 				A047D34D2B7CB75A00F897E4 /* SceneDelegate.swift in Sources */,
 				A047D3712B7D5C1D00F897E4 /* PriorityViewController.swift in Sources */,
 				A047D36F2B7D5C1500F897E4 /* TagViewController.swift in Sources */,
 				A047D36B2B7D547200F897E4 /* AddTodoViewController.swift in Sources */,
 				A047D3632B7CBA0700F897E4 /* MainViewController.swift in Sources */,
+				A047D3842B7DFA0300F897E4 /* CircleIcon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +490,14 @@
 				minimumVersion = 5.7.0;
 			};
 		};
+		A047D3872B7DFFAB00F897E4 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -454,6 +505,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A047D3642B7D4ED200F897E4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		A047D3882B7DFFAB00F897E4 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A047D3872B7DFFAB00F897E4 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		A047D38A2B7DFFAB00F897E4 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A047D3872B7DFFAB00F897E4 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

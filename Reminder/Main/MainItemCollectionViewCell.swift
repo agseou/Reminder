@@ -13,7 +13,7 @@ class MainItemCollectionViewCell: BaseCollectionViewCell {
     // 앱을 직접 사용하니 long press 제스쳐? 적용해보면 좋겠다고 생각함
     let view = UIView()
     let number = UILabel()
-    let icon = UIImageView()
+    let icon = CircleIcon()
     let title = UILabel()
     
     override func configureHierarchy() {
@@ -27,10 +27,8 @@ class MainItemCollectionViewCell: BaseCollectionViewCell {
         view.backgroundColor = .white
         view.layer.cornerRadius = 10
         
-        number.font = .systemFont(ofSize: 17, weight: .heavy)
+        number.font = .systemFont(ofSize: 26, weight: .bold)
         number.text = "3"
-        
-        icon.image = UIImage(systemName: "heart")
         
         title.text = "오늘"
     }
