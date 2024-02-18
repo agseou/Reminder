@@ -14,13 +14,14 @@ class AddTodoViewController: BaseViewController {
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     let titleTextfield = UITextField()
     var date: String? = nil
-
+    let repository = ReminderRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(receiveDate), name: NSNotification.Name("didSelectDate"), object: nil)
-        
     }
     
     override func configureHierarchy() {
@@ -38,7 +39,11 @@ class AddTodoViewController: BaseViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "titleCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "memoCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "dateCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "tagCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "priorityCell")
     }
     
     override func configureLayout() {
@@ -52,27 +57,22 @@ class AddTodoViewController: BaseViewController {
     }
     
     @objc func tapAddButtonTapped() {
-        guard let title = titleTextfield.text else { return }
+        guard let title = titleTextfield.text, !title.isEmpty else { return }
         
-        let realm = try! Realm() // 램 호출!
+        let realm = try! Realm() 
         
-        // 위치 호출
         print(realm.configuration.fileURL!)
-        
-       
-        let money = Int.random(in: 100...5000) * 10
         let data = ReminderModel(title: title, compelete: false, flag: false)
 
-        try! realm.write {
-            realm.add(data)
-            print("Realm create")
-        }
+        repository.createItem(data)
         
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func receiveDate(_ notification: NSNotification) {
         if let date = notification.userInfo?["selectedDate"] as? Date {
             self.date = date.formattedDate
+            tableView.reloadData()
         }
     }
 }
@@ -95,19 +95,39 @@ extension AddTodoViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cellIdentifier: String
+            switch indexPath.section {
+            case 0:
+                cellIdentifier = "titleCell"
+            case 1:
+                cellIdentifier = "memoCell"
+            case 2:
+                cellIdentifier = "dateCell"
+            case 3:
+                cellIdentifier = "tagCell"
+            case 4: 
+                cellIdentifier = "priorityCell"
+            default:
+                fatalError("Unknown section")
+            }
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        
+        cell.selectionStyle = .none
         
         switch indexPath.section {
         case 0:
             cell.contentView.addSubview(titleTextfield)
             titleTextfield.delegate = self
-            
             titleTextfield.snp.makeConstraints {
                 $0.edges.equalToSuperview().inset(10)
             }
+            
         case 1:
-            cell.textLabel?.text = "마감일"
-            cell.accessoryType = .disclosureIndicator
+                cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
+                cell.textLabel?.text = "마감일"
+                cell.detailTextLabel?.text = date
+                cell.accessoryType = .disclosureIndicator
+            
         case 2:
             cell.textLabel?.text = "태그"
             cell.accessoryType = .disclosureIndicator

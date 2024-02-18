@@ -27,6 +27,11 @@
 		A047D3892B7DFFAB00F897E4 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A047D3882B7DFFAB00F897E4 /* Realm */; };
 		A047D38B2B7DFFAB00F897E4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A047D38A2B7DFFAB00F897E4 /* RealmSwift */; };
 		A047D38E2B7E002200F897E4 /* ReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A047D38D2B7E002200F897E4 /* ReminderModel.swift */; };
+		A050BA572B82B412001D6920 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = A050BA562B82B412001D6920 /* Toast */; };
+		A050BA592B82C04D001D6920 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A050BA582B82C04D001D6920 /* TodoViewController.swift */; };
+		A050BA5B2B82C1B4001D6920 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A050BA5A2B82C1B4001D6920 /* TodoTableViewCell.swift */; };
+		A050BA5D2B82C1C2001D6920 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A050BA5C2B82C1C2001D6920 /* BaseTableViewCell.swift */; };
+		A050BA5F2B82C76C001D6920 /* ReminderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A050BA5E2B82C76C001D6920 /* ReminderRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +54,10 @@
 		A047D3782B7DA6FA00F897E4 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		A047D3832B7DFA0300F897E4 /* CircleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleIcon.swift; sourceTree = "<group>"; };
 		A047D38D2B7E002200F897E4 /* ReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderModel.swift; sourceTree = "<group>"; };
+		A050BA582B82C04D001D6920 /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
+		A050BA5A2B82C1B4001D6920 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
+		A050BA5C2B82C1C2001D6920 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		A050BA5E2B82C76C001D6920 /* ReminderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A050BA572B82B412001D6920 /* Toast in Frameworks */,
 				A047D38B2B7DFFAB00F897E4 /* RealmSwift in Frameworks */,
 				A047D3892B7DFFAB00F897E4 /* Realm in Frameworks */,
 				A047D3662B7D4ED200F897E4 /* SnapKit in Frameworks */,
@@ -105,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				A047D35F2B7CB95300F897E4 /* BaseViewController.swift */,
+				A050BA5C2B82C1C2001D6920 /* BaseTableViewCell.swift */,
 				A047D3752B7D8A1800F897E4 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
@@ -115,6 +126,8 @@
 			children = (
 				A047D3622B7CBA0700F897E4 /* MainViewController.swift */,
 				A047D3732B7D8A0900F897E4 /* MainItemCollectionViewCell.swift */,
+				A050BA582B82C04D001D6920 /* TodoViewController.swift */,
+				A050BA5A2B82C1B4001D6920 /* TodoTableViewCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -150,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				A047D38D2B7E002200F897E4 /* ReminderModel.swift */,
+				A050BA5E2B82C76C001D6920 /* ReminderRepository.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -174,6 +188,7 @@
 				A047D3652B7D4ED200F897E4 /* SnapKit */,
 				A047D3882B7DFFAB00F897E4 /* Realm */,
 				A047D38A2B7DFFAB00F897E4 /* RealmSwift */,
+				A050BA562B82B412001D6920 /* Toast */,
 			);
 			productName = Reminder;
 			productReference = A047D3472B7CB75A00F897E4 /* Reminder.app */;
@@ -206,6 +221,7 @@
 			packageReferences = (
 				A047D3642B7D4ED200F897E4 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A047D3872B7DFFAB00F897E4 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				A050BA552B82B412001D6920 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = A047D3482B7CB75A00F897E4 /* Products */;
 			projectDirPath = "";
@@ -244,9 +260,13 @@
 				A047D34B2B7CB75A00F897E4 /* AppDelegate.swift in Sources */,
 				A047D34D2B7CB75A00F897E4 /* SceneDelegate.swift in Sources */,
 				A047D3712B7D5C1D00F897E4 /* PriorityViewController.swift in Sources */,
+				A050BA592B82C04D001D6920 /* TodoViewController.swift in Sources */,
+				A050BA5B2B82C1B4001D6920 /* TodoTableViewCell.swift in Sources */,
+				A050BA5D2B82C1C2001D6920 /* BaseTableViewCell.swift in Sources */,
 				A047D36F2B7D5C1500F897E4 /* TagViewController.swift in Sources */,
 				A047D36B2B7D547200F897E4 /* AddTodoViewController.swift in Sources */,
 				A047D3632B7CBA0700F897E4 /* MainViewController.swift in Sources */,
+				A050BA5F2B82C76C001D6920 /* ReminderRepository.swift in Sources */,
 				A047D3842B7DFA0300F897E4 /* CircleIcon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +518,14 @@
 				kind = branch;
 			};
 		};
+		A050BA552B82B412001D6920 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -515,6 +543,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A047D3872B7DFFAB00F897E4 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		A050BA562B82B412001D6920 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A050BA552B82B412001D6920 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -16,6 +16,13 @@ class DateViewController: BaseViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.post(name: Notification.Name("didSelectDate"), object: nil, userInfo: ["selectedDate": datePicker.date])
+        
+        datePicker.addTarget(self, action: #selector(didSelectDate), for: .valueChanged)
+    }
+
+    @objc func didSelectDate() {
+        // NotificationCenter를 사용하여 선택된 날짜를 알림으로 보냅니다.
+        NotificationCenter.default.post(name: Notification.Name("didSelectDate"), object: nil, userInfo: ["selectedDate": datePicker.date])
     }
     
     

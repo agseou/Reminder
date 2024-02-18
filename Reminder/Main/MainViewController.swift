@@ -98,8 +98,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainItemCollectionViewCell", for: indexPath) as! MainItemCollectionViewCell
         
+        
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let vc = TodoViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
 }
