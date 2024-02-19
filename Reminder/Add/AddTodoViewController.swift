@@ -14,6 +14,7 @@ class AddTodoViewController: BaseViewController {
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     let titleTextfield = UITextField()
     var date: String? = nil
+    var priority: String? = nil
     let repository = ReminderRepository()
     
     override func viewDidLoad() {
@@ -129,10 +130,13 @@ extension AddTodoViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.accessoryType = .disclosureIndicator
             
         case 2:
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
             cell.textLabel?.text = "태그"
             cell.accessoryType = .disclosureIndicator
         case 3:
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
             cell.textLabel?.text = "우선순위"
+            cell.detailTextLabel?.text = priority
             cell.accessoryType = .disclosureIndicator
         case 4:
             cell.textLabel?.text = "이미지 추가"

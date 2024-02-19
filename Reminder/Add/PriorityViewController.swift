@@ -9,21 +9,21 @@ import UIKit
 import SnapKit
 
 class PriorityViewController: BaseViewController {
-
+    
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     let list: [String] = ["없음", "낮음", "중간", "높음"]
     var seleted: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NotificationCenter.default.post(name: Notification.Name("Priority"), object: nil, userInfo: ["": ""])
+        NotificationCenter.default.post(name: Notification.Name("Priority"), object: nil, userInfo: ["selectedPriority": seleted])
     }
     
     override func configureHierarchy() {
@@ -43,7 +43,7 @@ class PriorityViewController: BaseViewController {
     }
     
     
-
+    
 }
 
 extension PriorityViewController: UITableViewDelegate, UITableViewDataSource {
@@ -55,12 +55,22 @@ extension PriorityViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         cell.textLabel?.text = list[indexPath.row]
+        if seleted == list[indexPath.row] {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        seleted = list[indexPath.row]
         
+        
+        tableView.reloadData()
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }
