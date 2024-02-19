@@ -21,7 +21,7 @@ final class ReminderRepository {
         } catch {
             print(error)
         }
-        
+        print(realm.configuration.fileURL!)
     }
     
     func fetchItem() -> Results<ReminderModel> {

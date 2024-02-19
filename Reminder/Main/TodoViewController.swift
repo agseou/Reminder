@@ -7,13 +7,18 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class TodoViewController: BaseViewController {
     
     let tableView = UITableView()
+    let repository = ReminderRepository()
+    var list: Results<ReminderModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        list = repository.fetchItem()
         
     }
     
@@ -36,18 +41,19 @@ class TodoViewController: BaseViewController {
 
 extension TodoViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TodoTableViewCell", for: indexPath) as! TodoTableViewCell
         
         cell.selectionStyle = .none
+        let item = list[indexPath.row]
         
-        cell.titleLabel.text = "Title \(indexPath.row)"
-        cell.detailLabel.text = "Details for item \(indexPath.row)"
-        cell.dateLabel.text = "Date: \(Date())"
-        cell.tagsLabel.text = "Tags: Example"
+        cell.titleLabel.text = item.title
+        cell.detailLabel.text =  item.memo
+        cell.dateLabel.text = item.finalDate?.formattedDate
+        cell.tagsLabel.text = item.tags
         
         return cell
     }
