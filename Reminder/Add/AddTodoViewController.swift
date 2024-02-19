@@ -23,6 +23,7 @@ class AddTodoViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(receiveDate), name: NSNotification.Name("didSelectDate"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receiveDate), name: NSNotification.Name("Priority"), object: nil)
     }
     
     override func configureHierarchy() {
@@ -73,6 +74,10 @@ class AddTodoViewController: BaseViewController {
     @objc func receiveDate(_ notification: NSNotification) {
         if let date = notification.userInfo?["selectedDate"] as? Date {
             self.date = date.formattedDate
+            tableView.reloadData()
+        }
+        if let priority = notification.userInfo?["selectedPriority"] as? String {
+            self.priority = priority
             tableView.reloadData()
         }
     }
